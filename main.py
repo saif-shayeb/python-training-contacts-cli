@@ -6,6 +6,7 @@ from manager import (
     show_all_contacts,
     delete_contact,
 )
+from utils import WeakPasswordError, validate_password
 
 #################################################
 # because i used 2 dictionaries one with key
@@ -42,6 +43,16 @@ def main():
     print("-----welcome to the contacts app------")
     print("======================================")
     init(autoreset=True)
+
+    # Require a strong session password before allowing app actions.
+    while True:
+        app_password = input("Set app password: ")
+        try:
+            validate_password(app_password)
+            break
+        except WeakPasswordError as err:
+            print(err)
+
     while choice != "#":
         print("1.add new contact")
         print("2.search by name")
