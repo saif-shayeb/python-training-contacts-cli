@@ -25,10 +25,10 @@ def init_contacts(contacts):
 
 
 def validate_password(password):
-    pattern = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,40}$"
+    pattern = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{6,40}$"
     if not re.fullmatch(pattern, password):
         raise WeakPasswordError(
-            "password must have at least one upper case letter"
-            + " and one lowercase letter and one digit and should be "
-            + "in range of 6 to 40 letters long"
+            "password must have at least one upper case letter,"
+            + " one lowercase letter, one digit,one special character and "
+            + "should be in range of 6 to 40 letters long"
         )

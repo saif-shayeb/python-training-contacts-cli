@@ -1,25 +1,7 @@
 from colorama import Fore, Style
 from utils import load_contacts, save_contacts, init_contacts
 
-###########################################################################
-# this part is only used for testing and to always have the same contacs on
-# startup
-contacts = {
-    "khalid": "0599131355",
-    "adam": "0597365598",
-    "rami": "0569876546",
-    "ali": "0598754632",
-}
-reverse_contacts = {
-    "0599131355": "khalid",
-    "0597365598": "adam",
-    "0569876546": "rami",
-    "0598754632": "ali",
-}
 
-
-init_contacts(contacts)
-##########################################################################
 contacts, reverse_contacts = load_contacts()
 
 
@@ -86,12 +68,13 @@ def show_all_contacts():
 def delete_contact():
     show_all_contacts()
     name = input("please enter the name of the user u want to delete:")
+    num = contacts[name]
     try:
         confirm = input(
             "confirm the deletion of the contact:"
             + name
             + "\t"
-            + contacts[name]
+            + num
             + "(Y\\N)?"
         )
     except KeyError:
@@ -99,6 +82,7 @@ def delete_contact():
         return
     if confirm.capitalize() == "Y":
         contacts.pop(name)
+        reverse_contacts.pop(num)
         save_contacts(contacts)
         print(Fore.GREEN + "deleted successfully")
         return
