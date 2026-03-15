@@ -1,5 +1,5 @@
 from colorama import Fore, Style
-from utils import load_contacts, save_contacts, init_contacts
+from utils import load_contacts, save_contacts
 
 
 contacts, reverse_contacts = load_contacts()
@@ -68,8 +68,8 @@ def show_all_contacts():
 def delete_contact():
     show_all_contacts()
     name = input("please enter the name of the user u want to delete:")
-    num = contacts[name]
     try:
+        num = contacts[name]
         confirm = input(
             "confirm the deletion of the contact:"
             + name
